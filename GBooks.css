@@ -1,0 +1,45 @@
+body {
+    background-color: black;
+    color: aliceblue;
+}
+
+.Title-Image {
+    width: 4rem;
+
+}
+
+.Title {
+    background-color: blue;
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin: 0.1rem;
+    border-radius: 0.2rem;
+    border-color:darkslateblue;
+    border-width: 0.5rem;
+}
+
+.SearchForm {
+  background-color: skyblue;
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  margin:0.1rem;
+  border-radius: 0.2rem;
+  border-color: darkblue;
+  border-width: 0.5rem;
+  padding: 2rem;
+}
+
+.SearchInput {
+    font-size: x-large;
+}
+
+.SearchButton {
+    font-size: x-large;
+}
+
+.BookList > h3 {
+    color:aquamarine;
+    padding-left: 5rem;
+}
