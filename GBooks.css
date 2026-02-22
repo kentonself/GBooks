@@ -23,20 +23,29 @@ body {
   background-color: skyblue;
   display: flex;
   justify-content: center;
-  gap: 3rem;
+  gap: 1rem;
   margin:0.1rem;
   border-radius: 0.2rem;
   border-color: darkblue;
   border-width: 0.5rem;
-  padding: 2rem;
+  padding: .1rem;
+}
+
+.SearchForm > label {
+    color:black ;
+    font-size: 1.3rem;
+    padding: 1.7rem 0.1rem 0.1rem 0.1rem;
+    justify-content:right;
 }
 
 .SearchInput {
     font-size: x-large;
+    padding: 0.1rem
 }
 
 .SearchButton {
     font-size: x-large;
+    margin: 1.5rem 3rem
 }
 
 .BookList > h3 {

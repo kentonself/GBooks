@@ -6,22 +6,27 @@ import Footer from "./Footer"
 import { useState } from 'react'
 
 export default function GBooks() {
-    let [books, setBooks] = useState("books")
     let [elapsed, setElapsed] = useState(0)
+    let [queryParam, setQueryParam] = useState("")
+    let [pageStatus, setPageStatus] = useState("init")
 
-    const handleSearch = (books) => {
-        console.log(books)
-        setBooks(books);
-    };
     const handleElapsed = (elapsed) => {
         console.log(elapsed)
         setElapsed(elapsed)
     }
+    const handleQueryParam = (queryParam) => {
+        console.log(queryParam)
+        setQueryParam(queryParam)
+    }
+    const handlePageStatus = (status) => {
+        console.log("PageStatus; " + status)
+        setPageStatus(status)
+    }
     return (
         <>
             <Title />
-            <SearchForm handleSearch={handleSearch} handleElapsed={handleElapsed} />
-            <BookList books={books} />
+            <SearchForm handleQueryParam={handleQueryParam} handlePageStatus={handlePageStatus} />
+            <BookList queryParam={queryParam} handlePageStatus={handlePageStatus}  />
             <Footer elapsed={elapsed} />
         </>
     )
