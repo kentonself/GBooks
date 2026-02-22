@@ -1,5 +1,5 @@
 
-export default function SearchForm({handleSearch}) {
+export default function SearchForm({handleSearch, handleElapsed}) {
    function handleSubmit(event) {
         event.preventDefault()
         const formData = new FormData(event.target)
@@ -8,7 +8,7 @@ export default function SearchForm({handleSearch}) {
         searchTerm = encodeURIComponent(searchTerm)
         console.log("Search Term = " + searchTerm)
         let api_key=import.meta.env.VITE_BOOKS_API_KEY;
-        //let startTime = performance.now()
+        let startTime = performance.now()
         fetch("https://www.googleapis.com/books/v1/volumes?q=" +
             searchTerm + "&key="+ api_key)
             .then(response => {
@@ -25,8 +25,9 @@ export default function SearchForm({handleSearch}) {
             .catch(error => {
                 console.error("fecth error ", error)
             })
-            //let endTime = performance.now()
-            //handleTime(endTime - startTime)
+            let endTime = performance.now()
+            console.log(endTime-startTime)
+            handleElapsed(endTime - startTime)
     }
     
     return (

@@ -41,15 +41,19 @@ export default function BookList(books) {
         return (prev.count > current.count) ? prev : current;
     });
     const earliest = books.items.reduce((prev, current) => {
-        return(prev.volumeInfo.publishedDate < current.volumeInfo.publishedDate) ? prev : current;
+        return (prev.volumeInfo.publishedDate < current.volumeInfo.publishedDate) ? prev : current;
     })
     const latest = books.items.reduce((prev, current) => {
-        return(prev.volumeInfo.publishedDate > current.volumeInfo.publishedDate) ? prev : current;
+        return (prev.volumeInfo.publishedDate > current.volumeInfo.publishedDate) ? prev : current;
     })
 
+    let pageCount = Math.ceil(books.items.length / itemsPerPage)
 
-    let pageCount = Math.ceil(books.items.length/itemsPerPage)
+    const detailsElements = document.querySelectorAll('details');
 
+    detailsElements.forEach(details => {
+        details.removeAttribute('open');
+    });
     return (
         <div className="BookList">
             <h3>Total number of books found: {books.items.length}</h3>
@@ -58,7 +62,18 @@ export default function BookList(books) {
             <h3>Latest Publication Date {latest.volumeInfo.publishedDate} (for "{latest.volumeInfo.title}")</h3>
             <ul>
                 {books.items.map((item, index) => (
-                    <li key={index}>{item.volumeInfo.title}</li>
+                    <li className="BookItem"
+                        key={index}>
+                        <details>
+                            <summary>
+                                {item.volumeInfo.authors.join(", ") + " - "}
+                                <i>{item.volumeInfo.title}</i>
+                            </summary>
+                            <p>{item.volumeInfo.description != undefined ?
+                               item.volumeInfo.description :
+                                "(No description is available for this title)"}</p>
+                        </details>
+                    </li>
                 ))}
             </ul>
             <ReactPaginate

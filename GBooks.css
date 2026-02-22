@@ -43,3 +43,21 @@ body {
     color:aquamarine;
     padding-left: 5rem;
 }
+
+.BookList > ul > li {
+    font-size: 1.2rem;
+    color:cyan;  
+    padding: .5rem 0.5rem 0.5rem 0
+}
+
+.Footer {
+    color:rgb(185, 139, 229);
+    background-color: midnightblue;
+    max-height: 1.7rem;
+    padding: 1rem;
+    /*
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    */
+}
