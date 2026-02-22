@@ -1,7 +1,10 @@
 import { useState, useEffect } from "react"
 import ReactPaginate from 'react-paginate';
+import { b } from "./bookdata"
 
-let books = {"init": []}
+// Some globals
+// TODO: Take our of global scope
+let books = { "init": [] }
 let pageStatus = "init"
 let pageNum = 0
 let elapsed = 0
@@ -18,7 +21,7 @@ export default function BookList({ queryParam, handlePageStatus }) {
     const itemsPerPage = 10
 
     function handleStateChange(s) {
-       handlePageStatus(s)
+        handlePageStatus(s)
     }
     function gotoPage(event) {
         event.preventDefault()
@@ -26,9 +29,9 @@ export default function BookList({ queryParam, handlePageStatus }) {
         console.log(formData.entries())
         let page = formData.get("gotoPage")
         console.log("Going to " + page)
-        pageNum = page -1
+        pageNum = page - 1
         fetchBooks()
-        handleStateChange("goto "+ pageNum)
+        handleStateChange("goto " + pageNum)
         console.log("goto")
     }
     function pgUp(event) {
@@ -53,6 +56,18 @@ export default function BookList({ queryParam, handlePageStatus }) {
         let api_key = import.meta.env.VITE_BOOKS_API_KEY;
         let startTime = performance.now()
         let response = null
+
+
+/*
+        // Uncomment to stub out API call
+        books = b
+        pageStatus = "fetched"
+        handleStateChange("fetched")
+        return
+
+        */
+
+
         try {
             response = await fetch("https://www.googleapis.com/books/v1/volumes?q=" +
                 queryParam + "&key=" + api_key + "&startIndex=" + pageNum * itemsPerPage)
@@ -121,7 +136,7 @@ export default function BookList({ queryParam, handlePageStatus }) {
     return (
         <>
             <div className="BookList">
-                <h3>Total number of books found: {books.totalItems} (This is page {pageNum+1} of {books.totalItems/itemsPerPage})</h3>
+                <h3>Total number of books found: {books.totalItems} (This is page {pageNum + 1} of {books.totalItems / itemsPerPage})</h3>
                 <h3>Author appearing most {topAuthor.name} with {topAuthor.count} author credits</h3>
                 <h3>Earliest Publication Date {earliest.volumeInfo.publishedDate} (for "{earliest.volumeInfo.title}")</h3>
                 <h3>Latest Publication Date {latest.volumeInfo.publishedDate} (for "{latest.volumeInfo.title}")</h3>
@@ -154,19 +169,21 @@ export default function BookList({ queryParam, handlePageStatus }) {
                 activeClassName={"active"} // Custom class for the active page
             />
             */}
-                <button type="button" onClick={pgUp}>Prev</button>
-                <button type="button" onClick={pgDown}>Next</button>
-                <form action="submit" onSubmit={gotoPage} >
-                <label>Skip to page  </label>
-                <input
-                    type="number"
-                    name="gotoPage"
-                    id="gotoPage"
-                    className="GotoPage"
-                    placeholder="5"
-                    aria-label="Page number to skip to" />
-                <button type="submit" className="GotoButton">Submit</button>
-            </form>
+                <div className="pager">
+                    <button type="button" className="pagerButton" onClick={pgUp}>Prev</button>
+                    <button type="button" className="pagerButton" onClick={pgDown}>Next</button>
+                    <form action="submit" className="pagerForm" onSubmit={gotoPage} >
+                        <label className="pagerLabel">Skip to page</label>
+                        <input
+                            type="number"
+                            name="gotoPage"
+                            id="gotoPage"
+                            className="gotoInput"
+                            placeholder="5"
+                            aria-label="Page number to skip to" />
+                        <button type="submit" className="gotoButton">Submit</button>
+                    </form>
+                </div>
             </div>
             <p className="Footer">
                 The last search took  {elapsed.toFixed(2)} milliseconds<br></br>

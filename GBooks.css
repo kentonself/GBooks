@@ -59,11 +59,52 @@ body {
     padding: .5rem 0.5rem 0.5rem 0
 }
 
+.pager {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    border-width: 1.2rem;
+    font-size: 1.3rem;
+    
+}
+.pagerLabel {
+    margin: 1.1rem;
+    padding: 1rem 0;
+    justify-content: center;
+    align-content: top;
+    font-size: 1.3rem;
+}
+.pagerButton {
+    margin: .8rem;
+    padding: 0.5rem 0.9rem;
+    font-size: 1.1rem;
+    border-width: 0.3rem;
+    border-color: cadetblue;
+}
+.pagerForm {
+    padding: 1rem;
+    color: yellow;
+    justify-content: center;
+    font-size: 1.8rem;
+    gap: 0.5rem;
+
+}
+.gotoButton {
+    margin: 0.5rem;
+    font-size: 1rem;
+
+}
+.gotoInput {
+    font-size: 1rem;
+}
 .Footer {
     color:rgb(185, 139, 229);
     background-color: midnightblue;
     max-height: 1.7rem;
-    padding: 1rem;
+   display: flex;
+   justify-content: center;
+    padding: 0.2rem;
+    gap: 1rem
     /*
     position: absolute;
     left: 0;
