@@ -11,5 +11,6 @@ To use this app you must first have an API key associated with Google Books. Inf
 Before running the app
 
 To run the app after cloning this repo, run
-npm install
-npm run dev
+
+ - npm install
+ - npm run dev
