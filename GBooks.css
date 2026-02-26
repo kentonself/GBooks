@@ -100,7 +100,7 @@ body {
 .Footer {
     color:rgb(185, 139, 229);
     background-color: midnightblue;
-    max-height: 1.7rem;
+    max-height: 2.6rem;
    display: flex;
    justify-content: center;
     padding: 0.2rem;
@@ -110,4 +110,8 @@ body {
     left: 0;
     bottom: 0;
     */
+}
+.FooterMessage {
+    font-size: large;
+    color: red;
 }
