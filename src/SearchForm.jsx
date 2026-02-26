@@ -11,10 +11,10 @@ export default function SearchForm() {
         const formData = new FormData(event.target)
         console.log(formData.entries())
         console.log(`Query: ${formData.get("queryParam")}`)
-        if (queryParam === encodeURIComponent(formData.get("queryParam"))) {
+        if (queryParam === encodeURIComponent(formData.get("queryParam")).trim()) {
             initBookList()
         }
-        queryParam = encodeURIComponent(formData.get("queryParam"))
+        queryParam = encodeURIComponent(formData.get("queryParam").trim())
         setState(state + 1)
     }
 
