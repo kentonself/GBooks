@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { b } from "./bookdata" // for stub data in lieu of API call
 
 
 let pageStatus = "init"
-let books = { "totalItems": 10000, "items": [] }
+let books = { "totalItems": 10000, "items": [] }  // totalItems returned by API is erroneous at the moment
 let lastResp = {}
 let lastPageNum = -1
 let lastQuery = ""
@@ -11,7 +11,18 @@ let pageNum = 1
 let message = ""
 let elapsed = 0
 
-export default function BookList({ queryParam }) {
+export function initBookList() {
+    pageStatus = "init"
+    books = { "totalItems": 10000, "items": [] }  // totalItems returned by API is erroneous at the moment
+    lastResp = {}
+    lastPageNum = -1
+    lastQuery = ""
+    pageNum = 1
+    message = ""
+    elapsed = 0
+}
+
+export function BookList({ queryParam }) {
     let itemsPerPage = 10
     let maxItemsPerCall = 20 // This is determined by the API. Google advertises this as 40 but it looks like it only does 20 at a time.
     let resp = {}
@@ -166,8 +177,8 @@ export default function BookList({ queryParam }) {
     if (pageStatus == "init" || queryParam == "") {
         if (message.length) {
             return <>
-            <div className="FooterMessage">${message}</div>
-            Enter a search term above to see books
+                <div className="FooterMessage">${message}</div>
+                Enter a search term above to see books
             </>
         }
         return (<>Enter a search term above to see books</>)

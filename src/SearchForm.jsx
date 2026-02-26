@@ -1,17 +1,22 @@
 import { useState } from "react"
-import BookList from "./BookList"
+import { BookList } from "./BookList"
+import { initBookList } from "./BookList"
 
+let queryParam = ""
 export default function SearchForm() {
-    let [queryParam, setQueryParam] = useState("")
+    let [state, setState] = useState(0)
 
     function handleSubmit(event) {
         event.preventDefault()
         const formData = new FormData(event.target)
         console.log(formData.entries())
-        console.log(`Query: ${queryParam}`)
-        setQueryParam(encodeURIComponent(formData.get("queryParam")))
+        console.log(`Query: ${formData.get("queryParam")}`)
+        if (queryParam === encodeURIComponent(formData.get("queryParam"))) {
+            initBookList()
+        }
+        queryParam = encodeURIComponent(formData.get("queryParam"))
+        setState(state + 1)
     }
-
 
     return (
         <>
@@ -29,6 +34,6 @@ export default function SearchForm() {
                 </form>
             </div>
             <BookList queryParam={queryParam} />
-            </>
+        </>
     )
 }
